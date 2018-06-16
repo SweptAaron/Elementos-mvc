@@ -57,7 +57,7 @@ public class Mensaje {
         this.cuerpo = cuerpo;
     }
 
-    public LocalDate getFecha() {
+   public LocalDate getFecha() {
         return fecha;
     }
 
