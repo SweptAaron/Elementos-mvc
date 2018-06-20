@@ -1,11 +1,14 @@
 package unitec.elementosmvc;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,5 +36,20 @@ public class ControladorMensaje {
         Mensaje Rmensa = new Mensaje();
         
         return mensa.findById(id).get();
+    }
+    
+    //C) Guardar
+    
+    @PostMapping("/mensaje")
+    public Estatus guardar(@RequestBody String json) throws Exception{
+        //Pirmero convertimos este String Json a un objeto java
+        ObjectMapper maper = new ObjectMapper();
+        Mensaje mensaje = maper.readValue(json, Mensaje.class);
+        mensa.save(mensaje);
+        System.out.println("Este objeto se convirtio: "+mensaje);
+        Estatus estatus = new Estatus();
+        estatus.setSucces(true);
+        estatus.setMensaje("Mensaje Guardado con exito");
+        return estatus;
     }
 }
