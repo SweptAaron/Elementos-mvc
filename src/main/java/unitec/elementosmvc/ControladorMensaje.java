@@ -64,8 +64,14 @@ public class ControladorMensaje {
         return estatus;
     }
     
-    /*@PutMapping("/mensaje/{id}")
+    @PutMapping("/mensaje/{id}")
     public Estatus update(@PathVariable String id, @RequestBody String json) throws Exception{
-       
-    }*/
+        ObjectMapper maper = new ObjectMapper();
+        Mensaje mensaje = maper.readValue(json, Mensaje.class);
+        mensa.save(mensaje);
+        Estatus estatus = new Estatus();
+        estatus.setSucces(true);
+        estatus.setMensaje("Mensaje actualizado con exito");
+        return estatus;
+    }
 }
