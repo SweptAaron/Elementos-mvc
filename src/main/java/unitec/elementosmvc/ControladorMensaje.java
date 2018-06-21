@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,4 +54,18 @@ public class ControladorMensaje {
         estatus.setMensaje("Mensaje Guardado con exito");
         return estatus;
     }
+    
+    @DeleteMapping("/mensaje/borrar/{id}")
+    public Estatus borrar(@PathVariable String id) throws Exception{
+        mensa.deleteById(id);
+        Estatus estatus = new Estatus();
+        estatus.setSucces(true);
+        estatus.setMensaje("Mensaje Borrado con exito");
+        return estatus;
+    }
+    
+    /*@PutMapping("/mensaje/{id}")
+    public Estatus update(@PathVariable String id, @RequestBody String json) throws Exception{
+       
+    }*/
 }
