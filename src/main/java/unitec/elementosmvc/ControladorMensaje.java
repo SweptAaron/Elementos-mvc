@@ -64,8 +64,8 @@ public class ControladorMensaje {
         return estatus;
     }
     
-    @PutMapping("/mensaje/{id}")
-    public Estatus update(@PathVariable String id, @RequestBody String json) throws Exception{
+    @PutMapping("/mensaje")
+    public Estatus update(@RequestBody String json) throws Exception{
         ObjectMapper maper = new ObjectMapper();
         Mensaje mensaje = maper.readValue(json, Mensaje.class);
         mensa.save(mensaje);
